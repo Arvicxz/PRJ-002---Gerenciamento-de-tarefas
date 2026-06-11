@@ -33,7 +33,7 @@ export async function initDashboardMetrics() {
 
     try {
         // 2. BUSCA AS TAREFAS REAIS DIRETAMENTE DO POSTGRESQL
-        const response = await fetch(`http://localhost:3000/api/tasks?projectId=${activeProjectId}`);
+        const response = await fetch(`https://taskflow-api-glvv.onrender.com/api/tasks?projectId=${activeProjectId}`);
         if (!response.ok) throw new Error("Falha ao buscar tarefas no banco.");
         
         const tasks = await response.json();

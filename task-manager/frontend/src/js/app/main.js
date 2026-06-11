@@ -23,12 +23,12 @@ if (usuario) {
         try {
             // === ETAPA 1: GERENCIAMENTO DE PROJETO ===
             // Busca os projetos do usuário logado na API
-            const resProjetos = await fetch(`http://localhost:3000/api/projects?userId=${usuario.id}`);
+            const resProjetos = await fetch(`https://taskflow-api-glvv.onrender.com/api/projects?userId=${usuario.id}`);
             let projetos = await resProjetos.json();
 
             // Se o usuário não tiver nenhum projeto no banco, cria o primeiro automaticamente
             if (!projetos || projetos.length === 0) {
-                const createRes = await fetch("http://localhost:3000/api/projects", {
+                const createRes = await fetch("https://taskflow-api-glvv.onrender.com/api/projects", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name: "TaskFlow Backend", userId: usuario.id })
@@ -45,12 +45,12 @@ if (usuario) {
 
             // === ETAPA 2: GERENCIAMENTO DE SPRINTS ===
             // Busca as sprints atreladas a esse projeto ativo no PostgreSQL
-            const resSprints = await fetch(`http://localhost:3000/api/sprints?projectId=${projetoAtivo.id}`);
+            const resSprints = await fetch(`https://taskflow-api-glvv.onrender.com/api/sprints?projectId=${projetoAtivo.id}`);
             let sprints = await resSprints.json();
 
             // Se não houver sprints para este projeto, cria a Sprint padrão de inicialização
             if (!sprints || sprints.length === 0) {
-                const createSprintRes = await fetch("http://localhost:3000/api/sprints", {
+                const createSprintRes = await fetch("https://taskflow-api-glvv.onrender.com/api/sprints", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({

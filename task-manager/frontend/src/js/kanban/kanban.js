@@ -37,8 +37,8 @@ export function initKanban() {
     try {
       // Busca Tarefas e Sprints em paralelo do PostgreSQL via API
       const [responseTasks, responseSprints] = await Promise.all([
-        fetch(`http://localhost:3000/api/tasks?projectId=${activeProjectId}`),
-        fetch(`http://localhost:3000/api/sprints?projectId=${activeProjectId}`)
+        fetch(`https://taskflow-api-glvv.onrender.com/api/tasks?projectId=${activeProjectId}`),
+        fetch(`https://taskflow-api-glvv.onrender.com/api/sprints?projectId=${activeProjectId}`)
       ]);
 
       const tasks = await responseTasks.json();

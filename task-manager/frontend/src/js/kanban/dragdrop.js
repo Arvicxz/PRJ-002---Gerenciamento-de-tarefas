@@ -38,7 +38,7 @@ export function setupDragAndDrop() {
 
           // 2. CORRIGIDO: ENVIANDO PARA O ENDPOINT CORRETO DO CONTROLLER (PUT /tasks/:id)
           try {
-            const response = await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+            const response = await fetch(`https://taskflow-api-glvv.onrender.com/api/tasks/${taskId}`, {
               method: "PUT", // 🌟 Mudado de PATCH para PUT para casar com as rotas do back-end
               headers: {
                 "Content-Type": "application/json"

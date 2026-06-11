@@ -29,9 +29,9 @@ export async function renderBacklogPage() {
   try {
     // Busca Sprints, Tarefas e Usuários em paralelo direto das APIs reais do PostgreSQL
     const [resSprints, resTasks, resUsers] = await Promise.all([
-      fetch(`http://localhost:3000/api/sprints?projectId=${activeProjectId}`),
-      fetch(`http://localhost:3000/api/tasks?projectId=${activeProjectId}`),
-      fetch(`http://localhost:3000/api/users`)
+      fetch(`https://taskflow-api-glvv.onrender.com/api/sprints?projectId=${activeProjectId}`),
+      fetch(`https://taskflow-api-glvv.onrender.com/api/tasks?projectId=${activeProjectId}`),
+      fetch(`https://taskflow-api-glvv.onrender.com/api/users`)
     ]);
 
     estadoSprints = await resSprints.json();
@@ -313,7 +313,7 @@ function setupEvents() {
         if (!sprintId) return;
 
         try {
-          const response = await fetch(`http://localhost:3000/api/sprints/${sprintId}`, {
+          const response = await fetch(`https://taskflow-api-glvv.onrender.com/api/sprints/${sprintId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ status: "EM ANDAMENTO" })
@@ -415,7 +415,7 @@ function setupEvents() {
 
           const ejecutarExclusaoTarefa = async () => {
              try {
-                await fetch(`http://localhost:3000/api/tasks/${taskId}`, { method: "DELETE" });
+                await fetch(`https://taskflow-api-glvv.onrender.com/api/tasks/${taskId}`, { method: "DELETE" });
                 renderBacklogPage();
              } catch (err) { console.error("Erro ao deletar:", err); }
           };
@@ -445,7 +445,7 @@ function setupEvents() {
 
         const ejecutarExclusaoSprint = async () => {
           try {
-            await fetch(`http://localhost:3000/api/sprints/${sprintId}`, { method: "DELETE" });
+            await fetch(`https://taskflow-api-glvv.onrender.com/api/sprints/${sprintId}`, { method: "DELETE" });
             renderBacklogPage();
           } catch (err) { console.error(err); }
         };
@@ -511,13 +511,13 @@ function setupEvents() {
 
       try {
         if (editId) {
-          await fetch(`http://localhost:3000/api/sprints/${editId}`, {
+          await fetch(`https://taskflow-api-glvv.onrender.com/api/sprints/${editId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
           });
         } else {
-          await fetch("http://localhost:3000/api/sprints", {
+          await fetch("https://taskflow-api-glvv.onrender.com/api/sprints", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
@@ -577,14 +577,14 @@ function setupEvents() {
 
       try {
         if (editId) {
-          await fetch(`http://localhost:3000/api/tasks/${editId}`, {
+          await fetch(`https://taskflow-api-glvv.onrender.com/api/tasks/${editId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
           });
         } else {
           payload.status = "todo";
-          await fetch("http://localhost:3000/api/tasks", {
+          await fetch("https://taskflow-api-glvv.onrender.com/api/tasks", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)

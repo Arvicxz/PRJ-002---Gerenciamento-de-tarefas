@@ -123,13 +123,13 @@ export async function initReports() {
 
 async function loadDatabaseData() {
   try {
-    const projResponse = await fetch("http://localhost:3000/api/projects");
+    const projResponse = await fetch("https://taskflow-api-glvv.onrender.com/api/projects");
     allProjects = projResponse.ok ? await projResponse.json() : [];
 
     const activeProjectId = localStorage.getItem("taskflow_active_project_id");
     
     if (activeProjectId) {
-      const tasksResponse = await fetch(`http://localhost:3000/api/tasks?projectId=${activeProjectId}`);
+      const tasksResponse = await fetch(`https://taskflow-api-glvv.onrender.com/api/tasks?projectId=${activeProjectId}`);
       allTasks = tasksResponse.ok ? await tasksResponse.json() : [];
     } else {
       allTasks = [];

@@ -68,7 +68,7 @@ async function fetchProjectsFromBackend() {
     const userId = usuarioLogado ? usuarioLogado.id : '';
 
     try {
-        const response = await fetch(`http://localhost:3000/api/projects?userId=${userId}`);
+        const response = await fetch(`https://taskflow-api-glvv.onrender.com/api/projects?userId=${userId}`);
         if (!response.ok) throw new Error("Erro ao carregar projetos do servidor.");
         
         projects = await response.json();
@@ -92,7 +92,7 @@ async function fetchProjectsFromBackend() {
 async function populateSystemUsers() {
     try {
         // 🌟 CORREÇÃO CIRÚRGICA: Consome a rota nova do back-end ao invés do localStorage
-        const response = await fetch("http://localhost:3000/api/users");
+        const response = await fetch("https://taskflow-api-glvv.onrender.com/api/users");
         if (!response.ok) throw new Error("Erro ao listar membros na API");
         const systemUsers = await response.json();
 
@@ -203,7 +203,7 @@ async function handleSaveProject(e) {
     try {
         if (isEditing) {
             // === ENVIO DE EDIÇÃO (PUT) ===
-            const response = await fetch(`http://localhost:3000/api/projects/${activeProjectId}`, {
+            const response = await fetch(`https://taskflow-api-glvv.onrender.com/api/projects/${activeProjectId}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name: name, memberIds: checkedMembers })
@@ -212,7 +212,7 @@ async function handleSaveProject(e) {
             if (!response.ok) throw new Error("Falha ao atualizar projeto no servidor.");
         } else {
             // === ENVIO DE CRIAÇÃO (POST) ===
-            const response = await fetch("http://localhost:3000/api/projects", {
+            const response = await fetch("https://taskflow-api-glvv.onrender.com/api/projects", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name: name, userId: userId, memberIds: checkedMembers })
@@ -251,7 +251,7 @@ async function handleDeleteProject() {
     if (!confirm(confirmText)) return;
 
     try {
-        const response = await fetch(`http://localhost:3000/api/projects/${activeProjectId}`, {
+        const response = await fetch(`https://taskflow-api-glvv.onrender.com/api/projects/${activeProjectId}`, {
             method: "DELETE"
         });
 

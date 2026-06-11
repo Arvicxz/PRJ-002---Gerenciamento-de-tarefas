@@ -23,7 +23,7 @@ document.querySelector("form").addEventListener("submit", async function(e) { //
 
   try {
     // --- CONEXÃO COM O BACK-END ---
-    const response = await fetch("http://localhost:3000/api/auth/login", {
+    const response = await fetch("https://taskflow-api-glvv.onrender.com/api/auth/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
